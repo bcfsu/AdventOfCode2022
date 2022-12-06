@@ -9,13 +9,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Timer;
 import java.util.logging.Logger;
 
 public class Day1 {
 
   public static String getResult() {
-    long start = System.currentTimeMillis();
     URL path = Day1.class.getResource("input.txt");
     File f = new File(path.getFile());
     int currentSum = 0;
