@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Day5 {
 
-     private static HashMap<Integer, Stack<String>> stackDatabase = new HashMap<>();
+    private static HashMap<Integer, Stack<String>> stackDatabase = new HashMap<>();
 
     public static String getResult() {
         URL path = Day5.class.getResource("input.txt");
@@ -51,16 +51,32 @@ public class Day5 {
         Stack<String> originStack = stackDatabase.get(originId);
         Stack<String> destinationStack = stackDatabase.get(destinationId);
 
+        moveBoxesPartTwo(quantity, originStack, destinationStack);
+    }
+
+    // TODO: Broken
+    private static void moveBoxesPartTwo(Integer quantity, Stack<String> originStack, Stack<String> destinationStack) {
+        if (quantity == 1) {
+            String box = originStack.pop();
+            destinationStack.push(box);
+
+        } else {
+            int startIndex = originStack.size() - quantity;
+            int lastIndex = originStack.size();
+
+            List<String> subList = originStack.subList(startIndex, lastIndex);
+            destinationStack.addAll(subList);
+            originStack.removeAll(subList);
+        }
+    }
+
+    private static void moveBoxesPartOne(Integer quantity, Stack<String> originStack, Stack<String> destinationStack) {
         int counter = 0;
-        // TODO: Double triple check this logic
         while (counter < quantity) {
             String box = originStack.pop();
             destinationStack.push(box);
             counter++;
         }
-//        System.out.println("[Stack Database] ORIGIN: " + stackDatabase.get(originId));
-//        System.out.println("[Stack Database] DESTINATION: " + stackDatabase.get(destinationId));
-//        System.out.println(" ");
     }
 
     private static void initializeSampleStacks() {
