@@ -59,12 +59,11 @@ public class Day5 {
         if (quantity == 1) {
             String box = originStack.pop();
             destinationStack.push(box);
-
         } else {
-            int startIndex = originStack.size() - quantity;
-            int lastIndex = originStack.size();
+            int startIndexInclusive = originStack.size() - quantity;
+            int endingIndexExclusive = originStack.size();
 
-            List<String> subList = originStack.subList(startIndex, lastIndex);
+            List<String> subList = originStack.subList(startIndexInclusive, endingIndexExclusive);
             destinationStack.addAll(subList);
             originStack.removeAll(subList);
         }
